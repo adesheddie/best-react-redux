@@ -1,24 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
-
+import CakeComponent from './components/CakeComponent';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import CakeComponentWithHook from './components/CakeComponentWithHook';
+import IceCreamComponentWithHook from './components/IceCreamComponentWithHook';
+import UsershooksComponent from './components/UsershooksComponent';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Provider store={store}>
+        <div className="App">
+          <Switch>
+            <Route path='/cake' component={CakeComponent} />
+            {/* <Redirect to='/amazing-careers' />  to redirect, as homepage */ } 
+          </Switch>
+          {/* <CakeComponent /> */}
+          <CakeComponentWithHook /><hr />
+          <IceCreamComponentWithHook /><hr />
+          <UsershooksComponent />
+        </div>
+      </Provider>
+    </BrowserRouter>
   );
 }
 
